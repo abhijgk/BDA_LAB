@@ -1,0 +1,23 @@
+db.Faculty.insert([{"Name":"ABC","ID":"ABC1234","Department":"CSE","Native":"Kerala","DOB":"19-07-1980","Gender":"Male"},{"Name":"EFG","ID":"EFG1234","Department":"ISE","Native":"Tamil Nadu","DOB":"19-05-1980","Gender":"Female"},{"Name":"XYZ","ID":"XYZ1234","Department":"ECE","Native":"Delhi","DOB":"19-07-1985","Gender":"FeMale"},{"Name":"QWE","ID":"QWE1234","Department":"CSE","Native":"Kerala","DOB":"29-07-1982","Gender":"Male"}])
+
+db.COE.insert([{"Proctor_Name":"ABC","Department":"CSE","Student_Name":"Kratharth","Sem":7,"SGPA":9.5,"CGPA":9.8},{"Proctor_Name":"EFG","Department":"ISE","Student_Name":"Kedar","Sem":7,"SGPA":9.2,"CGPA":9.7},{"Proctor_Name":"XYZ","Department":"ECE","Student_Name":"Krishna","Sem":7,"SGPA":9.3,"CGPA":9.4},{"Proctor_Name":"QWE","Department":"CSE","Student_Name":"Suresh","Sem":5,"SGPA":9.3,"CGPA":9}])
+
+
+db.Admission.insert([{"Student_Name":"Ramesh","12th Percentage":98,"10th Percentage":95,"Father_Name":"Shashi","Mother_Name":"Kalavathi","DOB":"27-09-2002"},{"Student_Name":"Arnav","12th Percentage":90,"10th Percentage":93,"Father_Name":"Ravi","Mother_Name":"Kusum","DOB":"22-03-2002"},{"Student_Name":"Aruna","12th Percentage":94,"10th Percentage":85,"Father_Name":"Ram","Mother_Name":"Latha","DOB":"17-05-2002"},{"Student_Name":"Suraj","12th Percentage":91,"10th Percentage":92,"Father_Name":"Venkatesh","Mother_Name":"Lalana","DOB":"17-09-2002"}])
+
+db.Library.insert([{"Book_Name":"Signals and Systems","Units":10,"Shelf_Number":"11c","Sem":5,"Depts":["ECE","EEE"],"Issue_dates":["11-01-2020"]},{"Book_Name":"Genes","Units":15,"Shelf_Number":"19a","Sem":3,"Depts":["BT"],"Issue_dates":["13-01-2020","17-01-2020","29-12-2019"]},{"Book_Name":"Thermodynamics","Units":20,"Shelf_Number":"1b","Sem":5,"Depts":["ME","CH","IEM"],"Issue_dates":["19-01-2020"]}])
+
+db.CollegeFunction.insert([{"Student_Name":"Kratharth","USN":"1BM17CS035","Sem":7,"Role":"Marketing","Events_Handled":["Quiz","Singing"],"Sponsorship":5000},{"Student_Name":"Kedar","USN":"1BM17CS041","Sem":7,"Role":"PR","Events_Handled":["Dancing","Battle Of Bands"],"Sponsorship":10000},{"Student_Name":"Krishna","USN":"1BM17CS042","Sem":7,"Role":"Stage","Events_Handled":["Flee Market","Coding"],"Sponsorship":2000},{"Student_Name":"Rahul","USN":"1BM18CS001","Sem":5,"Role":"Marketing","Events_Handled":["Quiz","Singing"],"Sponsorship":12000}])
+
+Find Command:
+
+db.getCollection('Admission').find({"Student_Name":"Arnav"})
+
+
+db.getCollection('COE').find({"Proctor_Name":"ABC"})
+
+
+db.getCollection('CollegeFunction').find({"Role":"Marketing"})
+
+
+db.getCollection('Faculty').find({"Department":"CSE"})
