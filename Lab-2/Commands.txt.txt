@@ -1,0 +1,23 @@
+Insert with and without upsert option and normal insertion:
+
+	db.Employee.insert({_id:1,"Name":"Ashish","Age":35,"Deptno":1002})
+
+	db.Employee.update({_id:1,"Name":"Ashish","Deptno":1002},{$set:{"Age":40},{"upsert":true})
+	
+	db.Employee.update({_id:2,"Name":"Brunda","Deptno":1003},{$set:{"Age":30},{"upsert":false})
+
+
+To find the employees with names begin with 'A': db.getCollection('Employee').find({"Name":/^A/})
+
+To get all the documents from both the collections :	db.getCollection('Department').find({})
+							db.getCollection('Employee').find({})
+
+To add and remove a field from the existing document :
+	db.Employee.update({"Age":35},{$unset:{"Phone No":"0123456789"}})
+	db.Employee.update({"Age":35},{$set:{"Phone No":"0123456789"}})
+
+To find all the employees whose age is greater than 30:  
+	db.getCollection('Employee').find({"Age":{$gt:30}})
+
+To find the names and departments of all the employees whose dept number lies between 1001 and 1005 :
+	db.getCollection('Employee').find({"Deptno":{$gte:1001,$lte:1005}},{"Name":1,"Deptno":1})
