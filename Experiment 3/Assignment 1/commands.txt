@@ -1,0 +1,9 @@
+#importing a csv file
+
+mongoimport --collection=mongodbhandson --db=lab4 --fields="App,Category,Rating,Reviews,Size,Installs,Type,Price,Content Rating,Genres,Last Updated,Current Version,Android Version" --type=csv --file='BDA Lab'/BDA_LAB/googleplaystore.csv
+
+# To find the sum 
+db.mongodbhandson.aggregate({$group:{category:"$Category",ReviewSum:{$sum:"$Reviews"}}}).pretty()
+
+# to find the average
+db.mongodbhandson.aggregate({$group:{_id:"$Category",RatingAverage:{$avg:"$Price"}}}).pretty()

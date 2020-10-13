@@ -1,0 +1,35 @@
+# To insert data into the collection
+
+db.books.insert({_id:2,Category:"Business Intelligence",Bookname:"Fundamentals of Business Analytics",Author:"Seema Acharya",qty:55,price:500,rol:30,pages:250})
+> db.books.insert({_id:3,Category:"Analytics",Bookname:"Competing on Analytics",Author:"Thomas Devanport",qty:8,price:150,rol:20,pages:150})
+> db.books.insert({_id:4,Category:"Visualization",Bookname:"Visualizing Data",Author:"Ben Fry",qty:12,price:325,rol:6,pages:450})
+> db.books.insert({_id:5,Category:"Web Mining",Bookname:"Learning R",Author:"Richard",qty:10,price:850,rol:10,pages:120})
+
+#map reduce function
+
+db.books.mapReduce(
+ function(){
+ let key=null,value=null;
+if(this.pages>=300){
+ key="Big Books";
+value = this.pages;
+}
+ else{
+key="Small Books";
+value=this.pages;
+}
+emit(key,value);
+},
+.function(key,values){
+return values.length;
+ },
+{
+ out:"Book_Records"
+ }
+);
+
+
+# To find the result
+
+db.Book_Records.find()
+

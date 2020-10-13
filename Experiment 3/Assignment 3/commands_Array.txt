@@ -1,0 +1,36 @@
+Array Commands
+
+# To insert the data into the collection
+
+	db.Countries.insert({country:"India",cities:["Bangalore","Mangalore","Mysore"]})
+	db.Countries.insert({country:"Australia",cities:["Sydney","Perth","Melbourne"]})
+	db.Countries.insert({country:"England",cities:["London","Manchester","Oxford"]})
+	db.Countries.insert({country:"West Indies",cities:["Kingston","Havana","Roseau"]})
+
+# To display the first document
+
+	db.Countries.find().limit(1)
+
+# To display the third and fourth document
+
+	db.Countries.find().skip(2).limit(2)
+
+# To demonstrate the push command
+
+	db.Countries.update({country:"India"},{$push:{number_of_heritages:{Bangalore:10,Mangalore:10,Mysore:5}}})
+	
+# To demonstrate the pop command
+
+	db.Countries.update({country:"Australia"},{$pop:{"cities":-1}})
+	
+# To demonstrate pull command
+
+	db.Countries.update({country:"England"},{$pull:{"cities":"Oxford"}})
+
+# To demonstrate addToSet command
+
+	db.Countries.update({country:"England"},{$addToSet:{"cities":"Oxford"}})
+	
+# To demonstrate set command
+
+ 	db.Countries.update({country:"England"},{$set:{"cities.1":"WestChester"}})	
