@@ -1,0 +1,24 @@
+# To create a keyspace named Student
+	
+	create KEYSPACE Student with replication = { 'class' :'SimpleStrategy' , 'replication_factor' : '3'};
+
+# To create a columnfamily called student_info
+
+	use Student;
+	CREATE TABLE student-info(student_id int PRIMARY KEY, student_name text, date_of_joining date, sem int, dept_name text);
+
+# To insert values into the table
+
+	BEGIN BATCH
+	insert into student_info(student_id,student_name,date_of_joining,sem,dept_name) VALUES(1,'Kratharth','12-10-2017',7,'CSE');
+	insert into student_info(student_id,student_name,date_of_joining,sem,dept_name) VALUES(120,'Kedar','12-10-2018',5,'ISE');
+	insert into student_info(student_id,student_name,date_of_joining,sem,dept_name) VALUES(121,'Kratharth','15-10-2018',3,'ECE');
+	APPLY BATCH
+
+# To view the result
+	
+	select * from student_info
+	
+# To update the name of the student with student_id = 121
+
+	UPDATE student_info SET student_name = 'abc' WHERE student_id = 121;
