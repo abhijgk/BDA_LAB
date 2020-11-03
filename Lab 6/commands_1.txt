@@ -1,0 +1,45 @@
+# To create a keyspace called Employee.
+	
+	1. create KEYSPACE Employee with replication = { 'class' :'SimpleStrategy' , 'replication_factor' : '3'};
+
+# To create a table called emp_info and insert data into the table in batch.
+	
+	1. use Employee;
+	 
+	2.  CREATE TABLE emp_info(emp__id int, emp_name text,designation text, date_of_joining date, salary int, dept_name text,PRIMARY 		KEY(emp__id,salary));
+
+	3. BEGIN BATCH 
+	insert into emp_info(emp__id,emp_name,designation,date_of_joining,salary,dept_name) VALUES(120,'Kratharth','Assistant 			Manager','2017-10-12',50000,'Sales'); 
+	insert into emp_info(emp__id,emp_name,designation,date_of_joining,salary,dept_name) VALUES(121,'Kedar','Assistant Regional 		Manager','2017-10-10',60000,'Marketing'); 
+	insert into emp_info(emp__id,emp_name,designation,date_of_joining,salary,dept_name) VALUES(122,'Krishna','Regional 			Manager','2015-5-10',55000,'Engineering'); 
+	APPLY BATCH; 
+	
+	
+# To view the inserted data
+	
+	1. select * from emp_info;
+
+# To update the employee name and department name of the employee whose employee id = 121.
+	
+	1. update emp_info SET emp_name ='Abhilash',dept_name ='QA' WHERE emp__id = 121 AND salary=60000;
+	
+	2. select * from emp_info;
+
+
+# To alter the employee table to add a column called projects.
+
+	1. ALTER TABLE emp_info add projects text;
+	2. select * from emp_info;
+
+# To add data into the newly created project column.
+
+	1. update emp_info set projects = 'A,B,C' where emp__id = 121 AND salary=60000;
+	2. SELECT * from emp_info;
+
+# Demonstration of TTL
+	1. insert into emp_info(emp__id,emp_name,designation,date_of_joining,salary,dept_name) VALUES(125,'ABC','Assistant 			Manager','2017-10-13',60000,'Sales') using TTL 60;
+
+	// After 60 seconds
+	2, select * from emp_info;
+
+

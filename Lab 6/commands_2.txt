@@ -1,0 +1,45 @@
+# To create a keyspace called Library
+
+	1. create KEYSPACE Library with replication = { 'class' :'SimpleStrategy' , 'replication_factor' : '3};
+
+# To create a table called library_info and insert data into the table.
+
+	1. CREATE TABLE library_info(student_id int, counter_value counter,student_name text, book_name text, book_id int, date_of_issue 		date,PRIMARY KEY(student_id,student_name,book_name,book_id,date_of_issue));
+
+	2. select * from library_info;
+
+
+	3. update library_info set counter_value = counter_value + 1 where student_id = 113 AND student_name = 'Kedar' AND book_name = 	'BDA' AND book_id = 1000 AND date_of_issue = '2017-10-15'; 
+	
+	4. update library_info set counter_value = counter_value + 1 where student_id = 112 AND student_name = 'Krathart' AND book_name = 	'DSR' AND book_id = 1001 AND date_of_issue = '2017-10-26'; 
+	
+	5. update library_info set counter_value = counter_value + 1 where student_id = 112 AND student_name = 'Krathart' AND book_name = 	'BDA' AND book_id = 1000 AND date_of_issue = '2017-10-29'; 
+
+# To view the inserted data.
+
+	1. select * from library_info;
+
+# Updating the counter value and viewing the result
+
+	1. update library_info set counter_value = counter_value + 2 where student_id = 113 AND  student_name = 'Kedar' AND book_id = 1000 	AND book_name='BDA' AND date_of_issue='2017-10-15';
+ 
+ 	2. select * from library_info;
+ 
+# To prove that the student with id = 122 has taken the BDA book 2 times.
+
+	1. select sum(counter_value) from library_info where student_id = 112 AND student_name='Kratharth' AND book_name='BDA';
+
+	# Output : 2 (for the given table).
+
+# To export data into a csv file.
+	
+	1. copy library_info(student_id,,student_name,book_name,book_id,date_of_issue,counter_value) TO 'output.csv';
+
+# To import data into a csv file.
+
+	1. CREATE TABLE library_output_info(student_id int, counter_value counter,student_name text, book_name text, book_id int, 			date_of_issue date,PRIMARY KEY(student_id,student_name,book_name,book_id,date_of_issue));
+
+	2. copy library_output_info from 'output.csv' WITH HEADER = TRUE;
+
+	3. select * from library_output_info;
+
